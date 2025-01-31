@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.env.osx": {
+        "DOCKER_DEFAULT_PLATFORM": "linux/amd64"
+    }
+}

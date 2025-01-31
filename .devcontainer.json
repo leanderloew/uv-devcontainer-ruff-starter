@@ -1,0 +1,91 @@
+{
+    "name": "UV Dev Container Ruff Starter",
+    "build": {
+        "context": ".",
+        "dockerfile": "env/Dockerfile",
+        "args": {
+            "PLATFORM": "linux/amd64"
+        }
+    },
+    "runArgs": [
+        "--shm-size=16g",
+        "--platform=linux/amd64"
+    ],
+    "workspaceFolder": "/workspace",
+    "initializeCommand": "ls",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff",
+                "exiasr.hadolint",
+                "kevinrose.vsc-python-indent",
+                "ms-azuretools.vscode-docker",
+                "ms-toolsai.jupyter",
+                "ms-vscode-remote.remote-containers",
+                "redhat.vscode-yaml",
+                "eamodio.gitlens",
+                "bierner.markdown-mermaid"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/opt/venv/bin/python",
+                "python.analysis.extraPaths": [
+                    "/workspace/src"
+                ],
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll": "explicit"
+                    }
+                },
+                "ruff.organizeImports": true,
+                "ruff.fixAll": true,
+                "editor.formatOnSave": true,
+                "jupyter.runStartupCommands": [
+                    "%load_ext autoreload",
+                    "%autoreload 2"
+                ],
+                "jupyter.askForKernelRestart": false,
+                "notebook.output.textLineLimit": 100,
+                "notebook.output.scrolling": true,
+                "notebook.output.wordWrap": true,
+                "python.analysis.typeCheckingMode": "strict",
+                "python.analysis.diagnosticSeverityOverrides": {
+                    "reportInvalidTypeForm": "none",
+                    "reportGeneralTypeIssues": "warning",
+                    "reportUnknownMemberType": "none",
+                    "reportUnknownArgumentType": "none",
+                    "reportMissingImports": "warning",
+                    "reportUndefinedVariable": "warning",
+                    "reportUnknownLambdaType": "none",
+                    "reportUnknownParameterType": "none",
+                    "reportUnnecessaryComparison": "none",
+                    "reportReturnType": "none",
+                    "reportUnknownVariableType": "none",
+                    "reportPrivateImportUsage": "none",
+                    "reportIncompatibleVariableOverride": "none",
+                    "reportMissingTypeStubs": "none",
+                    "reportMissingTypeArgument": "warning",
+                    "reportUntypedFunctionDecorator": "none",
+                    "reportPrivateUsage": "none",
+                    "reportIncompatibleMethodOverride": "none"
+                }
+            }
+        }
+    },
+    "remoteUser": "root",
+    "containerEnv": {
+        "PYTHONPATH": "/workspace/src",
+        "TIMEOUT": "60",
+        "UVI_WORKERS": "1",
+        "PORT": "8000",
+        "FASTAPI_APP": "api.server:app"
+    },
+    "forwardPorts": [
+        8000
+    ]
+}

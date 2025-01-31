@@ -1,0 +1,10 @@
+ipython
+jupyterlab
+pandas
+tqdm
+uvicorn[standard]
+pydantic>=2.0
+requests
+gunicorn
+fastapi
+scipy

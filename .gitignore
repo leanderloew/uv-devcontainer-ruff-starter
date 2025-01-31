@@ -1,0 +1,17 @@
+# Secrets
+secrets/
+
+# Cache
+**/__pycache__
+**/*.pyc
+
+# Large data files
+*.csv
+*.parquet
+*.feather
+*.pickle
+*.pkl
+
+# Temporary files
+tmp/
+temp/
