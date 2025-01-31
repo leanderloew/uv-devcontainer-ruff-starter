@@ -64,25 +64,6 @@ ssh-add ~/.ssh/id_rsa # or the key you want to use
 - Everything should work the same out of the box (make sure the SSH-Agent is running on the server) it will be automatically forwarded if the Recommended local packages are installed.
 
 
-## Questions:
-- Why micromamba and not uv?
-    - In a scientific context you often need to install packages with binary requirements that are published through conda. Micromamba is (mostly) conda compliant and almost as fast as uv. If uv would ever support conda packages, I would switch.
-- Why docker?
-    - I have experimented with all sorts of environment managers and at the end of the day you always have to install some complicated dependencies and ship the whole thing - nothing beats a dockerized environment.
-- Why all that linting?
-    - I'm not a perfectionist, but a big believer in the value of typed code, especially now that we have AI assistance and the small overhead of typing is negligible.
-
-## Background
-After 8 years working with Python, I have set up hundreds of environments and it was a pain every time. What starts simple often ends up as a mess. However, as a result, setting up an environment with this project brings me absolute joy. Yes it's opinionated, and yes it's highly specific to VS-Code / Cursors, but I'm so happy with it I wanted to share it.
-
-Some small delightful things: I used to set up JP-servers in docker compose and I could never get it to remember to auto-import local dependencies - this is automatically done here using the jupyter.runStartupCommands :)
-Even setting up small things like, did I point to the right python path? Can I import my local dependencies? etc... it was always a pain.
-I'm also a strong believer in having the absolute exact same dev environment as the deployment environment (even if this means having to ship a slightly larger docker image to prod).
-
-Another thing that is nicely solved here is bringing your own base container. This was another big pain, e.g. I try to install a complicated package like seleniumbase - an absolute pain. Now I can just use their provided docker image and build my project on top of it, while still having all the necessary packages guaranteed and the exact same micromamba env every time :)
-
-I'm sure there are many more things I'm missing, but I'm happy with the result and I hope you will be too.
-
 ## Next Steps:
 - Adding a simple FastAPI server, with some best practices I have learned over the years
 - Setting up a simple CI/CD pipeline using GitHub Actions and deploying to various cloud providers
