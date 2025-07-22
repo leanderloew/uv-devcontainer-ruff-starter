@@ -1,0 +1,21 @@
+{
+    "exclude": [
+        "src/notebooks",
+        "**/notebooks/**",
+        "**/notebooks_backup/**",
+        "cloud_functions",
+        "**/cloud_functions/**",
+        "**/*.ipynb"
+    ],
+    "include": [
+        "src"
+    ],
+    "pythonVersion": "3.13",
+    "typeCheckingMode": "strict",
+    "reportUnknownLambdaType": "none",
+    "reportPrivateImportUsage": "none",
+    "reportIncompatibleVariableOverride": "none",
+    "reportMissingTypeStubs": "none",
+    "reportPrivateUsage": "none",
+    "reportUnknownVariableType": "none"
+}

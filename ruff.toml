@@ -74,14 +74,16 @@ ignore = [
     "EM101",   # Allow string literals in exceptions
     "ICN001",  # `import-conventions` - Import should follow convention of importing `pyarrow` as `pa`
     "PLR0911", # Too many return statements
-    "ANN101",  # Missing type annotation for self
-    "ANN102",  # Missing type annotation for cls
     "ANN204",  # Missing return type annotation for special method
     "ANN401",  # Dynamically typed expressions (Any) are disallowed
-    "TCH001",  # Move application import into a type-checking block
-    "TCH002",  # Move third-party import into a type-checking block
-    "TCH003",  # Move standard library import into a type-checking block
+    "TC001",   # Move application import into a type-checking block
+    "TC002",   # Move third-party import into a type-checking block
+    "TC003",   # Move standard library import into a type-checking block
     "E731",    # Do not assign a lambda expression, use a def
+    "PYI034",  # `__new__` return type should be annotated with string literal `"Self"`
+    "SIM102",  # Single if statement with a nested if-else block
+    "TC006",   # Adds a strange quote to cast?
+    "SIM108",  # Use match statement
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
@@ -101,8 +103,30 @@ skip-magic-trailing-comma = false
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
 
-[per-file-ignores]
+[lint.per-file-ignores]
 # Ignore specific rules for tests
 "tests/**" = ["INP001", "S101"]
-# Ignore specific rules for notebooks
-"*.ipynb" = ["E402", "F401", "F403", "F405", "I001"]
+# Ignore specific rules for notebooks - much more lenient for experimentation
+"*.ipynb" = [
+    "E402",  # Module level import not at top of file
+    "F401",  # Module imported but unused
+    "F403",  # 'from module import *' used; unable to detect undefined names
+    "F405",  # Name may be undefined, or defined from star imports
+    "I001",  # Import block is un-sorted or un-formatted
+    "ANN",   # All annotation rules - notebooks are for experimentation
+    "UP",    # pyupgrade rules - notebooks can use older syntax
+    "B",     # flake8-bugbear - more lenient in notebooks
+    "SIM",   # flake8-simplify - allow more complex patterns in notebooks
+    "DTZ",   # datetime rules - notebooks can be more flexible
+    "TCH",   # type-checking rules - notebooks don't need strict type checking
+    "PYI",   # typing stubs rules - not relevant for notebooks
+    "E731",  # Allow lambda assignments in notebooks
+    "E741",  # Allow ambiguous variable names in notebooks
+    "F722",  # Forward annotation syntax error
+    "PLR0911", # Too many return statements
+    "PLR0912", # Too many branches
+    "PLR0913", # Too many arguments
+    "PLR0915", # Too many statements
+    "C901",  # Complex structure
+    "INP001", # File is part of an implicit namespace package
+]
